@@ -1,0 +1,39 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12,9,11,5,4,3,2);
+
+void setup() 
+{
+  lcd.begin(16,2);
+  pinMode (A0, INPUT);
+  Serial.begin(9600);
+
+}
+
+float V=0;
+float Van=0;
+float d=0;
+
+
+void loop()
+{
+
+ delay (1000);
+ V=analogRead(A0); 
+ Van=V*5/1023;
+ d=(((0.5355)-(sqrt(pow(-.5355,2)-(4*.0147*(3.9067-Van)))))/(2*.0147));
+ Serial.print("\n");
+ Serial.print("Distancia:");
+ Serial.print(d);
+Serial.print("\n");
+
+ lcd.setCursor(0,0);
+  lcd.print("Sensor CNY-70");
+   lcd.setCursor(0,1);
+ lcd.print("Distancia:");
+  lcd.print(d);
+  lcd.print("mm");
+ 
+
+
+}
+                
